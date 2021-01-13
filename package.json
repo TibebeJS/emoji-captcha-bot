@@ -13,6 +13,7 @@
   "author": "Tibebes.",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "telegraf": "^4.0.0"
   }
 }
