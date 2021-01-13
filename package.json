@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "lodash.chunk": "^4.2.0",
     "telegraf": "^4.0.0"
   }
 }
