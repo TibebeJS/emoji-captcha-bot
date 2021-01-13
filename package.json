@@ -11,5 +11,8 @@
     "url": "https://github.com/TibebeJS/emoji-captcha-bot.git"
   },
   "author": "Tibebes.",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^4.0.0"
+  }
 }
