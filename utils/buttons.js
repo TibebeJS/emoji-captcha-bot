@@ -3,6 +3,6 @@ const chunk = require('lodash.chunk');
 
 module.exports = (emojis) => {
     return Markup.inlineKeyboard(
-        chunk(emojis.map(emoji => Markup.button.callback(emoji, 'something')), 4)
+        chunk(emojis.map(emoji => Markup.button.callback(emoji.hex, emoji.char)), 4)
     )
 }

@@ -1,5 +1,5 @@
 const fs = require('fs').promises
-
+const chunk = require('lodash.chunk');
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -19,5 +19,14 @@ function shuffle(array) {
 module.exports = async function () {
     const emojis = shuffle(await fs.readdir('./emojis')).slice(0, 9)
 
-    return emojis.map(emoji => String.fromCodePoint(parseInt(emoji, 16)))
+    return emojis.map(emoji => ({
+        char: emoji,
+        hex: chunk(
+            emoji
+                .slice(0, emoji.length - 4), 8)
+                .map(
+                    part => String.fromCodePoint(parseInt(part.join(''), 16))
+                )
+                .join('')
+    }))
 }
