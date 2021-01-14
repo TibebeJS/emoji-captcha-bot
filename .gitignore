@@ -6,3 +6,4 @@ package-lock.json
 test/*.log
 .npm
 .env
+*_db.json
