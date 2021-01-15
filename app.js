@@ -5,7 +5,7 @@ config()
 const LocalSession = require('telegraf-session-local')
 
 const { generateBtns } = require('./utils')
-const { EmojiCaptcha } = require('./core')
+const { EmojiCaptcha, CaptchaStatus } = require('./core')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -30,8 +30,12 @@ bot.use(async (ctx, next) => {
 })
 
 bot.on('message', async (ctx) => {
-  if (ctx.state.captcha.haveFailed) {
+  if (ctx.state.captcha.status === CaptchaStatus.PASS) {
+    await ctx.reply('You have already passed the captcha.')
+  } else if (ctx.state.captcha.status === CaptchaStatus.FAILED) {
     await ctx.reply('You have failed the captcha.')
+  } else if (ctx.state.captcha.status === CaptchaStatus.EXPIRED) {
+    await ctx.reply('The captcha has expired.')
   } else {
     await ctx.reply(
       `

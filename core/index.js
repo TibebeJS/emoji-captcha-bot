@@ -1,5 +1,6 @@
-const { EmojiCaptcha } = require('./captcha')
+const { EmojiCaptcha, CaptchaStatus } = require('./captcha')
 
 module.exports = {
-  EmojiCaptcha
+  EmojiCaptcha,
+  CaptchaStatus
 }
