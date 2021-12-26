@@ -67,6 +67,14 @@ Sample challenge:
 
 ![Sample screenshot](docs/sample_captcha.png)
 
+
+## Features:
+- [x] Text emojis challenge
+- [x] Attempts counter
+- [ ] Restrict/Unrestrict after challenge
+- [ ] Scrambled Image challenge (instead of just text)
+- [ ] Audio challenge
+- [ ] Timeouts
 ---
 <br/>
 
