@@ -25,6 +25,38 @@ With Telegram increasingly getting popular and popular social media option in re
 
 This project intends to mitigate these issues by forcing every new member to go through a captcha verification process thus making it harder for automated accounts/userbots to roam free in these groups.
 
+## Getting Started
+
+Git clone the repo:
+```bash
+git clone https://github.com/TibebeJS/emoji-captcha-bot.git
+```
+
+Change directory into the newly created repository ("emoji-captcha-bot")
+```console
+cd emoji-captcha-bot.git
+```
+
+Install dependencies
+```console
+npm i
+```
+
+Create `.env` file (a sample content is provided in `.env.sample`)
+
+Example:
+```console
+echo "BOT_TOKEN=123456:bottoken" > .env
+```
+
+Run the project
+```console
+npm start
+```
+
+---
+<br/>
+
 > Note this project is **still a WIP :)**
 >
 > More detailed documentation & features coming up. stay tuned.
