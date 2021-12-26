@@ -1,7 +1,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-<!-- [![MIT License][license-shield]][license-url] -->
+[![MIT License][license-shield]][license-url]
 
 
 <br />
@@ -75,6 +75,10 @@ Sample challenge:
 - [ ] Scrambled Image challenge (instead of just text)
 - [ ] Audio challenge
 - [ ] Timeouts
+
+## Contribution:
+
+#### Feel free to fork, edit and send a PR.
 ---
 <br/>
 
@@ -92,4 +96,4 @@ Sample challenge:
 [issues-url]: https://github.com/TibebeJS/emoji-captcha-bot/issues
 
 [license-shield]: https://img.shields.io/github/license/TibebeJS/emoji-captcha-bot.svg?style=for-the-badge
-[license-url]: https://github.com/TibebeJS/emoji-captcha-bot/blob/main/LICENSE.txt
+[license-url]: https://github.com/TibebeJS/emoji-captcha-bot/blob/main/LICENSE
