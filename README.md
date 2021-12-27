@@ -75,16 +75,24 @@ npm start
 
 ## How it works
 
-### **Version 1 (Current):**
 - Whenever a new member joins a group they will automatically be muted/restricted by the bot.
 - Bot then sends a message which contains emojis (presented as text).
 - User is prompted with emoji buttons to click on.
 - if user successfully manages to select all the emojis that are present in the challenge, his/her restrictions will be lifted automatically by the bot.
 - if the user runs out of attempts left before completing the challenge, he/she will remain restricted. 
 
-Sample challenge:
+### Note:
+make sure to add the bot with `"delete messages"` and `"ban users"` permissions.
 
-![Sample screenshot](docs/sample_captcha.png)
+Example:
+
+![Sample screenshot](docs/admin_permissions.png)
+
+If everything goes well, here is how it looks like when a new member joins the group.
+
+**Sample Challenge:** (type: `text-emoji-challenge`)
+
+![Sample screenshot](docs/sample.png)
 
 
 ## Features:
