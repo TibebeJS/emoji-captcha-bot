@@ -42,14 +42,33 @@ Install dependencies
 npm i
 ```
 
-Create `.env` file (a sample content is provided in `.env.sample`)
-
-Example:
-```console
-echo "BOT_TOKEN=123456:bottoken" > .env
+Open up `config/development/general.json5` file and provide `botToken` and `challenge`
+```json5
+{
+  botToken: "123456:bot token", // REPLACE with your token - from @BotFather
+  challenge: "text", // options: ['text', 'audio', 'image']
+}
 ```
 
-Run the project
+### Then edit your challenge specific config file
+E.g.  if we choose `'text'` as our challenge, then the config file would be `config/development/text-emoji-captcha.json5`
+
+**Example** (`"text-emoji-captcha.json5"` file)
+
+```json5
+{
+  challengeEmojisCount: 5, // how many emojis to present in the challenge
+  answerEmojisColumns: 3, // number of columns in the answer's keypad
+  answerEmojisRows: 3, // number of rows in the answer's keypad
+  emojiSeparator: "-", // what's in between consecutive emojis
+  numberOfAttempts: 3, // number of attempts before restriction
+  numberOfAttempts: 3, // number of attempts before restriction
+  emojiBlacklist: [ 🖕, 🍆, 🍑 ], // dont show these emojis
+  showCountryFlags: true, // show/hide country emojis
+}
+```
+
+After successful configuration, run the project:
 ```console
 npm start
 ```
