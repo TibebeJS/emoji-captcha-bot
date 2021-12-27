@@ -98,7 +98,8 @@ If everything goes well, here is how it looks like when a new member joins the g
 ## Features:
 - [x] Text emojis challenge
 - [x] Attempts counter
-- [ ] Restrict/Unrestrict after challenge
+- [x] Restrict when a member joins
+- [ ] Unrestrict after challenge
 - [ ] Scrambled Image challenge (instead of just text)
 - [ ] Audio challenge
 - [ ] Timeouts
