@@ -33,45 +33,78 @@ git clone https://github.com/TibebeJS/emoji-captcha-bot.git
 ```
 
 Change directory into the newly created repository ("emoji-captcha-bot")
-```console
+```bash
 cd emoji-captcha-bot.git
 ```
 
 Install dependencies
-```console
+```bash
 npm i
 ```
 
-Create `.env` file (a sample content is provided in `.env.sample`)
-
-Example:
-```console
-echo "BOT_TOKEN=123456:bottoken" > .env
+Open up `config/development/general.json5` file and provide `botToken` and `challenge`
+```json5
+{
+  botToken: "123456:bot token", // REPLACE with your token - from @BotFather
+  challenge: "text", // options: ['text-emoji', 'audio', 'image']
+}
 ```
 
-Run the project
-```console
+### Then edit your challenge specific config file
+E.g.  if we choose `'text-emoji'` as our challenge, then the config file would be `config/development/text-emoji-captcha.json5`
+
+**Example** (`"text-emoji-captcha.json5"` file)
+
+```json5
+{
+  challengeEmojisCount: 5, // how many emojis to present in the challenge
+  answerEmojisColumns: 3, // number of columns in the answer's keypad
+  answerEmojisRows: 3, // number of rows in the answer's keypad
+  emojiSeparator: "-", // what's in between consecutive emojis
+  numberOfAttempts: 3, // number of attempts before restriction
+  timeout: 3000, // timeout before a challenge expires in milliseconds
+  emojiBlacklist: [ "🖕", "🍆", "🍑" ], // dont show these emojis
+  showCountryFlags: true, // show/hide country emojis
+}
+```
+
+After successful configuration, run the project:
+```bash
 npm start
 ```
 
 ## How it works
 
-### **Version 1 (Current):**
 - Whenever a new member joins a group they will automatically be muted/restricted by the bot.
 - Bot then sends a message which contains emojis (presented as text).
 - User is prompted with emoji buttons to click on.
 - if user successfully manages to select all the emojis that are present in the challenge, his/her restrictions will be lifted automatically by the bot.
 - if the user runs out of attempts left before completing the challenge, he/she will remain restricted. 
 
-Sample challenge:
+### Note:
+make sure to add the bot with `"delete messages"` and `"ban users"` permissions.
 
-![Sample screenshot](docs/sample_captcha.png)
+Example:
+
+![Sample screenshot](docs/admin_permissions.png)
+
+If everything goes well, here is how it looks like when a new member joins the group.
+
+**Sample Challenge:** (type: `text-emoji-challenge`)
+
+![Sample Timeout Screenshot](docs/sample.png)
+
+If text-emoji challenge has timed out:
+
+![Sample Timeout Screenshot](docs/sample_timeout.png)
 
 
 ## Features:
 - [x] Text emojis challenge
 - [x] Attempts counter
-- [ ] Restrict/Unrestrict after challenge
+- [x] Add JSON configurations
+- [x] Restrict when a member joins
+- [ ] Unrestrict after challenge
 - [ ] Scrambled Image challenge (instead of just text)
 - [ ] Audio challenge
 - [ ] Timeouts

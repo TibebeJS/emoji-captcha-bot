@@ -1,13 +1,13 @@
 const { Telegraf } = require('telegraf')
-const { config } = require('dotenv')
-config()
+
+const config = require("./config");
 
 const LocalSession = require('telegraf-session-local')
 
 const { generateBtns } = require('./utils')
 const { EmojiCaptcha, CaptchaStatus } = require('./core')
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf(config.core.botToken)
 
 bot.use((new LocalSession({
   database: 'captcha_db.json',
@@ -22,23 +22,37 @@ bot.use((new LocalSession({
   }
 })).middleware())
 
-bot.use(async (ctx, next) => {
-  ctx.state.captcha = Object.keys(ctx.session).length === 0 ? new EmojiCaptcha() : EmojiCaptcha.from(ctx.session)
-  const result = await next()
-  ctx.session = JSON.parse(JSON.stringify(ctx.state.captcha))
-  return result
-})
+// bot.use(async (ctx, next) => {
+//   ctx.state.captcha = Object.keys(ctx.session).length === 0 ? new EmojiCaptcha() : EmojiCaptcha.from(ctx.session)
+//   const result = await next()
+//   ctx.session = JSON.parse(JSON.stringify(ctx.state.captcha))
+//   return result
+// })
 
 bot.on('message', async (ctx) => {
-  if (ctx.state.captcha.status === CaptchaStatus.PASS) {
-    await ctx.reply('You have already passed the captcha.')
-  } else if (ctx.state.captcha.status === CaptchaStatus.FAILED) {
-    await ctx.reply('You have failed the captcha.')
-  } else if (ctx.state.captcha.status === CaptchaStatus.EXPIRED) {
-    await ctx.reply('The captcha has expired.')
-  } else {
-    await ctx.reply(
-      `
+  if (ctx.message && ctx.message.new_chat_members && ctx.message.new_chat_members.length) {
+    for (const newMember of ctx.message.new_chat_members) {
+      try {
+        if (newMember.is_bot) {
+          await ctx.replyWithHTML(`@${newMember.username} is a bot.`)
+        } else {
+          await ctx.telegram.restrictChatMember(ctx.message.chat.id, newMember.id)
+          const introductionMessage = await ctx.replyWithHTML(`Dear &lt;${newMember.first_name}&gt;, new members are automatically muted.
+Please solve the following captcha to be unmuted.
+      `)
+
+          ctx.state.captcha = Object.keys(ctx.session).length === 0 ? new EmojiCaptcha() : EmojiCaptcha.from(ctx.session)
+          ctx.session = JSON.parse(JSON.stringify(ctx.state.captcha))
+
+          if (ctx.state.captcha.status === CaptchaStatus.PASS) {
+            await ctx.reply('You have already passed the captcha.')
+          } else if (ctx.state.captcha.status === CaptchaStatus.FAILED) {
+            await ctx.reply('You have failed the captcha.')
+          } else if (ctx.state.captcha.status === CaptchaStatus.EXPIRED) {
+            await ctx.reply('The captcha has expired.')
+          } else {
+            const challengeMessage = await ctx.reply(
+              `
 Please select the emojis you see here:
 
 ${ctx.state.captcha.presentedEmojis.map(x => x.hex).join('-')}
@@ -46,10 +60,46 @@ ${ctx.state.captcha.presentedEmojis.map(x => x.hex).join('-')}
 <b>Attempts left:</b> ${ctx.state.captcha.attemptsLeft}
 `,
 
-      generateBtns(ctx.state.captcha.choices)
-    )
+              generateBtns(ctx.state.captcha.choices)
+            )
+
+            setTimeout(async () => {
+              await ctx.telegram.deleteMessage(challengeMessage.chat.id, challengeMessage.message_id)
+              await ctx.replyWithHTML(`Challenge has expired. Manual unmute is required.`, {
+                reply_to_message_id: introductionMessage.message_id
+              })
+            }, config.textEmojiChallenge.timeout)
+          }
+
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    }
   }
 })
+
+// bot.on('message', async (ctx) => {
+//   if (ctx.state.captcha.status === CaptchaStatus.PASS) {
+//     await ctx.reply('You have already passed the captcha.')
+//   } else if (ctx.state.captcha.status === CaptchaStatus.FAILED) {
+//     await ctx.reply('You have failed the captcha.')
+//   } else if (ctx.state.captcha.status === CaptchaStatus.EXPIRED) {
+//     await ctx.reply('The captcha has expired.')
+//   } else {
+//     await ctx.reply(
+//       `
+// Please select the emojis you see here:
+
+// ${ctx.state.captcha.presentedEmojis.map(x => x.hex).join('-')}
+
+// <b>Attempts left:</b> ${ctx.state.captcha.attemptsLeft}
+// `,
+
+//       generateBtns(ctx.state.captcha.choices)
+//     )
+//   }
+// })
 
 bot.action(/([a-fA-F0-9]{8,16})\.png/, async ctx => {
   try {
@@ -80,5 +130,17 @@ ${ctx.state.captcha.presentedEmojis.map(x => x.hex).join('-')}
     }
   }
 })
+
+// await ctx.reply(
+//   `
+// Please select the emojis you see here:
+
+// ${ctx.state.captcha.presentedEmojis.map(x => x.hex).join('-')}
+
+// <b>Attempts left:</b> ${ctx.state.captcha.attemptsLeft}
+// `,
+
+//   generateBtns(ctx.state.captcha.choices)
+// )
 
 bot.launch()
