@@ -62,7 +62,7 @@ E.g.  if we choose `'text'` as our challenge, then the config file would be `con
   answerEmojisRows: 3, // number of rows in the answer's keypad
   emojiSeparator: "-", // what's in between consecutive emojis
   numberOfAttempts: 3, // number of attempts before restriction
-  numberOfAttempts: 3, // number of attempts before restriction
+  timeout: 3000, // timeout before a challenge expires in milliseconds
   emojiBlacklist: [ "🖕", "🍆", "🍑" ], // dont show these emojis
   showCountryFlags: true, // show/hide country emojis
 }
