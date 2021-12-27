@@ -1,0 +1,7 @@
+{
+  challengeEmojisCount: 5, // how many emojis to present in the challenge
+  answerEmojisColumns: 3, // number of columns in the answer's keypad
+  answerEmojisRows: 3, // number of rows in the answer's keypad
+  emojiSeparator: "-", // what's in between consecutive emojis in the challenge
+  numberOfAttempts: 3, // number of attempts before restriction
+}

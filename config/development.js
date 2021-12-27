@@ -7,5 +7,6 @@ const fs = require('fs');
 const JSON5 = require('json5')
 
 module.exports = {
-  bot: JSON5.parse(fs.readFileSync(__dirname + '/development/bot.json5'))
+  core: JSON5.parse(fs.readFileSync(__dirname + '/development/general.json5')),
+  textEmojiChallenge: JSON5.parse(fs.readFileSync(__dirname + '/development/text-emoji-captcha.json5')),
 }

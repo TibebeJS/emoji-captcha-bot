@@ -7,7 +7,7 @@ const LocalSession = require('telegraf-session-local')
 const { generateBtns } = require('./utils')
 const { EmojiCaptcha, CaptchaStatus } = require('./core')
 
-const bot = new Telegraf(config.bot.token)
+const bot = new Telegraf(config.core.botToken)
 
 bot.use((new LocalSession({
   database: 'captcha_db.json',
