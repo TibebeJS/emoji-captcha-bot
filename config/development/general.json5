@@ -1,4 +1,4 @@
 {
   botToken: "123456:bottoken", // REPLACE with your telegram bot token - from @BotFather
-  challenge: "text", // options: ['text', 'audio', 'image']
+  challenge: "text-emoji", // options: ['text-emoji', 'audio', 'image']
 }
