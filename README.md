@@ -46,12 +46,12 @@ Open up `config/development/general.json5` file and provide `botToken` and `chal
 ```json5
 {
   botToken: "123456:bot token", // REPLACE with your token - from @BotFather
-  challenge: "text", // options: ['text', 'audio', 'image']
+  challenge: "text", // options: ['text-emoji', 'audio', 'image']
 }
 ```
 
 ### Then edit your challenge specific config file
-E.g.  if we choose `'text'` as our challenge, then the config file would be `config/development/text-emoji-captcha.json5`
+E.g.  if we choose `'text-emoji'` as our challenge, then the config file would be `config/development/text-emoji-captcha.json5`
 
 **Example** (`"text-emoji-captcha.json5"` file)
 
@@ -62,7 +62,7 @@ E.g.  if we choose `'text'` as our challenge, then the config file would be `con
   answerEmojisRows: 3, // number of rows in the answer's keypad
   emojiSeparator: "-", // what's in between consecutive emojis
   numberOfAttempts: 3, // number of attempts before restriction
-  numberOfAttempts: 3, // number of attempts before restriction
+  timeout: 3000, // timeout before a challenge expires in milliseconds
   emojiBlacklist: [ "🖕", "🍆", "🍑" ], // dont show these emojis
   showCountryFlags: true, // show/hide country emojis
 }
