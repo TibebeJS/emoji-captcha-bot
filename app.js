@@ -1,13 +1,13 @@
 const { Telegraf } = require('telegraf')
-const { config } = require('dotenv')
-config()
+
+const config = require("./config");
 
 const LocalSession = require('telegraf-session-local')
 
 const { generateBtns } = require('./utils')
 const { EmojiCaptcha, CaptchaStatus } = require('./core')
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf(config.core.botToken)
 
 bot.use((new LocalSession({
   database: 'captcha_db.json',
