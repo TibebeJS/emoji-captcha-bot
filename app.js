@@ -37,7 +37,7 @@ bot.on('message', async (ctx) => {
           await ctx.replyWithHTML(`@${newMember.username} is a bot.`)
         } else {
           await ctx.telegram.restrictChatMember(ctx.message.chat.id, newMember.id)
-          await ctx.replyWithHTML(`Dear &lt;${newMember.first_name}&gt;, new members are automatically muted.
+          const introductionMessage = await ctx.replyWithHTML(`Dear &lt;${newMember.first_name}&gt;, new members are automatically muted.
 Please solve the following captcha to be unmuted.
       `)
 
@@ -51,7 +51,7 @@ Please solve the following captcha to be unmuted.
           } else if (ctx.state.captcha.status === CaptchaStatus.EXPIRED) {
             await ctx.reply('The captcha has expired.')
           } else {
-            await ctx.reply(
+            const challengeMessage = await ctx.reply(
               `
 Please select the emojis you see here:
 
@@ -62,6 +62,13 @@ ${ctx.state.captcha.presentedEmojis.map(x => x.hex).join('-')}
 
               generateBtns(ctx.state.captcha.choices)
             )
+
+            setTimeout(async () => {
+              await ctx.telegram.deleteMessage(challengeMessage.chat.id, challengeMessage.message_id)
+              await ctx.replyWithHTML(`Challenge has expired. Manual unmute is required.`, {
+                reply_to_message_id: introductionMessage.message_id
+              })
+            }, config.textEmojiChallenge.timeout)
           }
 
         }
