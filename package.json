@@ -1,6 +1,6 @@
 {
   "name": "emoji-captcha-bot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Telegram Bot with emoji captcha for new members",
   "main": "app.js",
   "scripts": {
