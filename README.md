@@ -76,6 +76,8 @@ Sample challenge:
 - [ ] Audio challenge
 - [ ] Timeouts
 
+More details can be found over: [Project canban](https://github.com/TibebeJS/emoji-captcha-bot/projects/1)
+
 ## Contribution:
 
 #### Feel free to fork, edit and send a PR.
