@@ -16,7 +16,6 @@
   "license": "MIT",
   "dependencies": {
     "config": "^3.3.6",
-    "dotenv": "^8.2.0",
     "lodash.chunk": "^4.2.0",
     "telegraf": "^4.0.0",
     "telegraf-session-local": "^2.0.0"
