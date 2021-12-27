@@ -5,6 +5,6 @@
   emojiSeparator: "-", // what's in between consecutive emojis in the challenge
   numberOfAttempts: 3, // number of attempts before restriction
   numberOfAttempts: 3, // number of attempts before restriction
-  emojiBlacklist: [ 🖕, 🍆, 🍑 ], // dont show these emojis in a challenge/answer
+  emojiBlacklist: [ "🖕", "🍆", "🍑" ], // dont show these emojis in a challenge/answer
   showCountryFlags: true, // some flags are very similar to each other and the challenges could become tricky
 }

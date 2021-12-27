@@ -1,6 +1,6 @@
 const { Telegraf } = require('telegraf')
 
-const config = require("config");
+const config = require("./config");
 
 const LocalSession = require('telegraf-session-local')
 
