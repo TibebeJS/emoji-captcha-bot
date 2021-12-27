@@ -80,13 +80,7 @@ More details can be found over: [Project canban](https://github.com/TibebeJS/emo
 
 ## Contribution:
 
-#### Feel free to fork, edit and send a PR.
----
-<br/>
-
-> Note this project is **still a WIP :)**
->
-> More detailed documentation & features coming up. stay tuned.
+#### Pick a task from [Project canban](https://github.com/TibebeJS/emoji-captcha-bot/projects/1), Assign yourself/get assigned, Fork, code and send a PR.
 
 [forks-shield]: https://img.shields.io/github/forks/TibebeJS/emoji-captcha-bot.svg?style=for-the-badge
 [forks-url]: https://github.com/TibebeJS/emoji-captcha-bot/network/members
