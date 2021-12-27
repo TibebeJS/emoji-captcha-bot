@@ -107,7 +107,7 @@ If text-emoji challenge has timed out:
 - [ ] Unrestrict after challenge
 - [ ] Scrambled Image challenge (instead of just text)
 - [ ] Audio challenge
-- [ ] Timeouts
+- [x] Timeouts
 
 More details can be found over: [Project canban](https://github.com/TibebeJS/emoji-captcha-bot/projects/1)
 
