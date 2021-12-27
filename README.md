@@ -92,7 +92,11 @@ If everything goes well, here is how it looks like when a new member joins the g
 
 **Sample Challenge:** (type: `text-emoji-challenge`)
 
-![Sample screenshot](docs/sample.png)
+![Sample Timeout Screenshot](docs/sample.png)
+
+If text-emoji challenge has timed out:
+
+![Sample Timeout Screenshot](docs/sample_timeout.png)
 
 
 ## Features:
