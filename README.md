@@ -33,12 +33,12 @@ git clone https://github.com/TibebeJS/emoji-captcha-bot.git
 ```
 
 Change directory into the newly created repository ("emoji-captcha-bot")
-```console
+```bash
 cd emoji-captcha-bot.git
 ```
 
 Install dependencies
-```console
+```bash
 npm i
 ```
 
@@ -63,13 +63,13 @@ E.g.  if we choose `'text'` as our challenge, then the config file would be `con
   emojiSeparator: "-", // what's in between consecutive emojis
   numberOfAttempts: 3, // number of attempts before restriction
   numberOfAttempts: 3, // number of attempts before restriction
-  emojiBlacklist: [ 🖕, 🍆, 🍑 ], // dont show these emojis
+  emojiBlacklist: [ "🖕", "🍆", "🍑" ], // dont show these emojis
   showCountryFlags: true, // show/hide country emojis
 }
 ```
 
 After successful configuration, run the project:
-```console
+```bash
 npm start
 ```
 
