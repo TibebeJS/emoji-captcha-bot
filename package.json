@@ -1,10 +1,11 @@
 {
   "name": "emoji-captcha-bot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Telegram Bot with emoji captcha for new members",
   "main": "app.js",
   "scripts": {
     "start": "node .",
+    "release": "standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
     "lodash.chunk": "^4.2.0",
     "telegraf": "^4.0.0",
     "telegraf-session-local": "^2.0.0"
+  },
+  "devDependencies": {
+    "standard-version": "^9.3.2"
   }
 }
